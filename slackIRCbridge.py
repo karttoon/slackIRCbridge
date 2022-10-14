@@ -7,6 +7,11 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_sdk import WebClient
 from threading import Thread
 
+__author__  = "Jeff White [karttoon] @noottrak"
+__email__   = "karttoon@gmail.com"
+__version__ = "1.0.0"
+__date__    = "14OCT2022"
+
 logging.basicConfig(level=logging.INFO)
 
 # Slack
