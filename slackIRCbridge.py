@@ -50,7 +50,7 @@ def handle_message_events(body, logger):
     username = client.users_info(user=body["event"]["user"])["user"]["name"]
 
     # Send to IRC
-    bot.connection.notice(ircChannel, f"<{username}>: {body['event']['text']}")
+    bot.connection.privmsg(ircChannel, f"<{username}>: {body['event']['text']}")
     #logger.info(body)
 
 
