@@ -40,7 +40,7 @@ class ircBot(irc.bot.SingleServerIRCBot):
 
     def on_pubmsg(self, c, e):
         # Send to Slack
-        client.chat_postMessage(channel=slackChannel, text=f"*<{e.source.nick}>*:  {e.arguments[0]}")
+        client.chat_postMessage(channel=slackChannel, text=f"{e.arguments[0]}", username=f"{e.source.nick}")
         return
 
 
