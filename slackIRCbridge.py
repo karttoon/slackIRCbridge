@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import irc.bot
 import irc.strings
-import logging
+import logging, hashlib
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_sdk import WebClient
@@ -9,8 +9,8 @@ from threading import Thread
 
 __author__  = "Jeff White [karttoon] @noottrak"
 __email__   = "karttoon@gmail.com"
-__version__ = "1.0.0"
-__date__    = "14OCT2022"
+__version__ = "1.0.1"
+__date__    = "19OCT2022"
 
 logging.basicConfig(level=logging.INFO)
 
@@ -40,7 +40,8 @@ class ircBot(irc.bot.SingleServerIRCBot):
 
     def on_pubmsg(self, c, e):
         # Send to Slack
-        client.chat_postMessage(channel=slackChannel, text=f"{e.arguments[0]}", username=f"{e.source.nick}")
+        md5Name = hashlib.md5(e.source.nick.encode()).hexdigest()
+        client.chat_postMessage(channel=slackChannel, text=f"{e.arguments[0]}", username=f"{e.source.nick}", icon_url=f"https://robohash.org/{md5Name}?size=1024x1024")
         return
 
 
